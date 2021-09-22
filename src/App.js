@@ -9,7 +9,8 @@ function App() {
     setLoading(true);
     const response = await fetch(url);
     const fetchedData = await response.json();
-    setText(fetchedData);
+    let amount = parseInt(count);
+    setText(fetchedData.slice(0, amount));
     setLoading(false);
   }
 
@@ -23,10 +24,8 @@ function App() {
       <h3>tired of boring lorem ipsum?</h3>
 
       <form action="" className="lorem-form" onSubmit={handleSubmit}>
-        <label htmlFor="amount">
-          paragraphs:
-        </label>
-        <input type="number" name='amount' id='amount' value={count} onChange={(e)=> setCount(e.target.value)}/>
+        <label htmlFor="amount">paragraphs:</label>
+        <input type="number" name='amount' id='amount' min="1" max="20" value={count} onChange={(e)=> setCount(e.target.value)}/>
         <button type='submit' className='btn'>generate</button>
       </form>
 
